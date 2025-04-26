@@ -19,7 +19,7 @@ public class FileScan {
         if (args.length > 0) {
             target = Paths.get(args[0]);}
         else {JFileChooser fileChooser = new JFileChooser();
-            target = new File(System.getProperty("user.dir")).toPath();
+            target = new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileInspector.java").toPath();;
             fileChooser.setCurrentDirectory(target.toFile());}
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
             target = chooser.getSelectedFile().toPath();}

@@ -10,7 +10,6 @@ public class FileScan {
 
         Scanner inFile;
         String line;
-        JFileChooser chooser = new JFileChooser();
         int lineCount = 0;
         int wordCount = 0;
         int charCount = 0;
@@ -18,15 +17,16 @@ public class FileScan {
 
         if (args.length > 0) {
             target = Paths.get(args[0]);}
-        else {JFileChooser fileChooser = new JFileChooser();
-            target = new File(System.getProperty("user.dir") + "\\src\\main\\java\\FileInspector.java").toPath();;
-            fileChooser.setCurrentDirectory(target.toFile());}
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            target = chooser.getSelectedFile().toPath();}
         else {
-            System.out.println("No such file or directory. Terminating.");
-            System.exit(0);
-            return;}
+            JFileChooser chooser = new JFileChooser();
+            chooser.setCurrentDirectory(new File(System.getProperty("user.dir")));
+            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                target = chooser.getSelectedFile().toPath();
+            } else {
+                System.out.println("No such file or directory. Terminating.");
+                System.exit(0);
+                return;}
+        }
 
         try {
             inFile = new Scanner(target);
